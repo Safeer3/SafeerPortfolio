@@ -157,9 +157,7 @@
                 <h2 class="section-title">About Me</h2>
                 <div class="about-container">
                     <div class="about-image">
-                        <div class="image-container">
-                            <div class="image-glitch"></div>
-                        </div>
+                        <img src="images/SafeerAhmad_Pic.jpg" alt="Safeer Ahmad" class="profile-image" style="width: 100%; bottom: 500px;">
                     </div>
                     <div class="about-text">
                         <p>Motivated CS student at University of Central Punjab with internship and trainer software development experience seeking a challenging role in software development.</p>
@@ -321,65 +319,41 @@
 
         <section id="contact" class="section">
             <div class="content">
-                <h2 class="section-title">Get In Touch</h2>
+                <h2 class="section-title">Contact Me</h2>
                 <div class="contact-container">
                     <div class="contact-info">
                         <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h3>Phone</h3>
-                                <p>(0331) 8450446</p>
-                            </div>
+                            <i class="fas fa-envelope"></i>
+                            <p>Safeer1073@gmail.com</p>
                         </div>
                         <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h3>Email</h3>
-                                <p>Safeer1073@gmail.com</p>
-                            </div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Lahore, Pakistan</p>
                         </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h3>Location</h3>
-                                <p>Lahore, Punjab, Pakistan</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fab fa-linkedin"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h3>LinkedIn</h3>
-                                <p><a href="https://www.linkedin.com/in/safeerahmad-sa" target="_blank">safeerahmad-sa</a></p>
-                            </div>
+                        <div class="contact-social">
+                            <a href="https://www.linkedin.com/in/safeerahmad-sa" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/Safeer3" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="mailto:Safeer1073@gmail.com"><i class="fas fa-envelope"></i></a>
                         </div>
                     </div>
                     <div class="contact-form">
-                        <form id="contactForm">
+                        <form action="https://formspree.io/f/mjkykdnd" method="POST">
                             <div class="form-group">
-                                <input type="text" id="name" name="name" placeholder="Your Name" required>
-                                <label for="name">Your Name</label>
+                                <input type="text" name="name" placeholder="Your Name" required>
                             </div>
                             <div class="form-group">
-                                <input type="email" id="email" name="email" placeholder="Your Email" required>
-                                <label for="email">Your Email</label>
+                                <input type="email" name="email" placeholder="Your Email" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" id="subject" name="subject" placeholder="Subject" required>
-                                <label for="subject">Subject</label>
+                                <input type="text" name="subject" placeholder="Subject" required>
                             </div>
                             <div class="form-group">
-                                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-                                <label for="message">Your Message</label>
+                                <textarea name="message" placeholder="Your Message" required></textarea>
                             </div>
-                            <button type="submit" class="btn primary">Send Message</button>
+                            <button type="submit" class="btn-primary">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
                         </form>
                     </div>
                 </div>
