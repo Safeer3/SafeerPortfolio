@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safeer Ahmad | Software Engineer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script>
+        // COMPLETELY REWRITTEN NAVIGATION SYSTEM
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all navigation links
+            const navLinks = document.querySelectorAll('nav ul li a');
+            
+            // Add click event to each link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // REMOVE ACTIVE CLASS FROM ALL LINKS
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // ADD ACTIVE CLASS ONLY TO CLICKED LINK
+                    this.classList.add('active');
+                    
+                    // Get target section and scroll to it
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                    
+                    // Close mobile menu if open
+                    const nav = document.querySelector('nav');
+                    const menuToggle = document.querySelector('.menu-toggle');
+                    if (nav.classList.contains('active')) {
+                        nav.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+            
+            // OBSERVE SECTIONS TO UPDATE NAVIGATION
+            const sections = document.querySelectorAll('section[id]');
+            
+            // Create intersection observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // If section is in view
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        
+                        // REMOVE ACTIVE CLASS FROM ALL LINKS
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        
+                        // ADD ACTIVE CLASS TO CORRESPONDING LINK
+                        const correspondingLink = document.querySelector(`nav ul li a[href="#${id}"]`);
+                        if (correspondingLink) {
+                            correspondingLink.classList.add('active');
+                        }
+                    }
+                });
+            }, { threshold: 0.5 }); // 50% of section must be visible
+            
+            // Observe all sections
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+            
+            menuToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                nav.classList.toggle('active');
+                
+                if (nav.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="binary-code">01001000 01100101 01101100 01101100 01101111</div>
+            <div class="loading-text">Loading Portfolio...</div>
+        </div>
+    </div>
+
+    <canvas id="bg"></canvas>
+
+    <header>
+        <div class="logo">SA</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="section">
+            <div class="content">
+                <h1 class="glitch-text" data-text="Safeer Ahmad">Safeer Ahmad</h1>
+                <div class="typing-container">
+                    <span class="static-text">I'm a </span>
+                    <span class="dynamic-text"></span>
+                </div>
+                <p class="subtitle">Building digital experiences with code</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn secondary">Contact Me</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/safeerahmad-sa" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:Safeer1073@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <div class="arrow">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="content">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-container">
+                    <div class="about-image">
+                        <div class="image-container">
+                            <div class="image-glitch"></div>
+                        </div>
+                    </div>
+                    <div class="about-text">
+                        <p>Motivated CS student at University of Central Punjab with internship and trainer software development experience seeking a challenging role in software development.</p>
+                        <p>I'm passionate about creating innovative solutions and have experience in React Native, JavaScript, and web application development.</p>
+                        <p>Currently working as an Intelligence Engineer at Supportiyo, where I build and maintain web applications ensuring smooth and responsive user experiences.</p>
+                        <div class="education">
+                            <h3>Education</h3>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <h4>University of Central Punjab, Lahore</h4>
+                                        <p>B.S. in Computer Science (2021 - 2025)</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <h4>Punjab Group of Colleges, Lahore</h4>
+                                        <p>Intermediate of Computer Science (2019 - 2020)</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <h4>The City School, Lahore</h4>
+                                        <p>O-levels in Computer Science (2016 - 2019)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="content">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3>Frontend Development</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item" data-skill="React Native">
+                                <div class="skill-icon"><i class="fab fa-react"></i></div>
+                                <h4>React Native</h4>
+                            </div>
+                            <div class="skill-item" data-skill="JavaScript">
+                                <div class="skill-icon"><i class="fab fa-js"></i></div>
+                                <h4>JavaScript</h4>
+                            </div>
+                            <div class="skill-item" data-skill="HTML/CSS">
+                                <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                                <h4>HTML/CSS</h4>
+                            </div>
+                            <div class="skill-item" data-skill="React">
+                                <div class="skill-icon"><i class="fab fa-react"></i></div>
+                                <h4>React</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Backend & Tools</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item" data-skill="Node.js">
+                                <div class="skill-icon"><i class="fab fa-node-js"></i></div>
+                                <h4>Node.js</h4>
+                            </div>
+                            <div class="skill-item" data-skill="Firebase">
+                                <div class="skill-icon"><i class="fas fa-fire"></i></div>
+                                <h4>Firebase</h4>
+                            </div>
+                            <div class="skill-item" data-skill="GitHub">
+                                <div class="skill-icon"><i class="fab fa-github"></i></div>
+                                <h4>GitHub</h4>
+                            </div>
+                            <div class="skill-item" data-skill="Next.js">
+                                <div class="skill-icon"><i class="fab fa-react"></i></div>
+                                <h4>Next.js</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Other Skills</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item" data-skill="C++">
+                                <div class="skill-icon"><i class="fas fa-code"></i></div>
+                                <h4>C++</h4>
+                            </div>
+                            <div class="skill-item" data-skill="WordPress">
+                                <div class="skill-icon"><i class="fab fa-wordpress"></i></div>
+                                <h4>WordPress</h4>
+                            </div>
+                            <div class="skill-item" data-skill="UI/UX">
+                                <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
+                                <h4>UI/UX</h4>
+                            </div>
+                            <div class="skill-item" data-skill="Problem Solving">
+                                <div class="skill-icon"><i class="fas fa-puzzle-piece"></i></div>
+                                <h4>Problem Solving</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="content">
+                <h2 class="section-title">Work Experience</h2>
+                <div class="experience-timeline">
+                    <div class="experience-item">
+                        <div class="experience-dot"></div>
+                        <div class="experience-content">
+                            <div class="experience-date">December 2023 - Present</div>
+                            <h3>Intelligence Engineer</h3>
+                            <h4>Supportiyo</h4>
+                            <p>Building and maintaining web applications for Supportiyo users, ensuring a smooth and responsive experience. Collaborating with the team to create efficient front-end applications and ensuring cross-device compatibility.</p>
+                            <div class="experience-tech">
+                                <span>React</span>
+                                <span>JavaScript</span>
+                                <span>Node.js</span>
+                                <span>Next.js</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-dot"></div>
+                        <div class="experience-content">
+                            <div class="experience-date">October 2023 - December 2023</div>
+                            <h3>Full Stack Web Developer</h3>
+                            <h4>Supportiyo</h4>
+                            <p>Worked on full-stack web development projects, creating responsive and user-friendly interfaces while implementing backend functionality.</p>
+                            <div class="experience-tech">
+                                <span>JavaScript</span>
+                                <span>React</span>
+                                <span>Node.js</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-dot"></div>
+                        <div class="experience-content">
+                            <div class="experience-date">August 2023 - January 2024</div>
+                            <h3>React Native Developer</h3>
+                            <h4>TechVezeto</h4>
+                            <p>Designed interfaces for three apps: TecMCH, SinaLearn, and FB Downloader based on approved UI/UX and use cases. Worked on optimization techniques to ensure smooth app performance and excellent user experience.</p>
+                            <div class="experience-tech">
+                                <span>React Native</span>
+                                <span>JavaScript</span>
+                                <span>UI/UX</span>
+                                <span>App Development</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="content">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Phone</h3>
+                                <p>(0331) 8450446</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Email</h3>
+                                <p>Safeer1073@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Location</h3>
+                                <p>Lahore, Punjab, Pakistan</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>LinkedIn</h3>
+                                <p><a href="https://www.linkedin.com/in/safeerahmad-sa" target="_blank">safeerahmad-sa</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                                <label for="name">Your Name</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                                <label for="email">Your Email</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                                <label for="subject">Subject</label>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                                <label for="message">Your Message</label>
+                            </div>
+                            <button type="submit" class="btn primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">SA</div>
+            <div class="footer-text">
+                <p>&copy; 2024 Safeer Ahmad. All Rights Reserved.</p>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/safeerahmad-sa" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="mailto:Safeer1073@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/scroll.js"></script>
+</body>
+</html> 
